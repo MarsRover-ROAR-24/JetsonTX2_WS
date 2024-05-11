@@ -1,0 +1,21 @@
+{
+    "autonomous_modules":
+    [
+        {
+            "name": "*Insert autonomous module name*",
+            "pkg": "supervisor",
+            "launch_file": "autonomous_test.launch",
+            "heartbeats_topic": "/status/autonomous"
+        }
+    ],
+
+    "manual_modules":
+    [
+        {
+            "name": "roscan",
+            "pkg": "roscan",
+            "launch_file": "roscan.launch",
+            "heartbeats_topic": null
+        }
+    ]
+}
