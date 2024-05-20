@@ -1,0 +1,80 @@
+[
+{
+  "directory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-10 -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"localization\\\" -I/home/nvidia/roar_ws/src/JetsonTX2_WS/localization/include -I/home/nvidia/roar_ws/devel/.private/roar_msgs/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /usr/include/eigen3 -g -std=c++17 -o CMakeFiles/ROAR_UKF_main.dir/src/ROAR_UKF_main.cpp.o -c /home/nvidia/roar_ws/src/JetsonTX2_WS/localization/src/ROAR_UKF_main.cpp",
+  "file": "/home/nvidia/roar_ws/src/JetsonTX2_WS/localization/src/ROAR_UKF_main.cpp",
+  "output": "CMakeFiles/ROAR_UKF_main.dir/src/ROAR_UKF_main.cpp.o"
+},
+{
+  "directory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-10 -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"localization\\\" -I/home/nvidia/roar_ws/src/JetsonTX2_WS/localization/include -I/home/nvidia/roar_ws/devel/.private/roar_msgs/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /usr/include/eigen3 -g -std=c++17 -o CMakeFiles/ROAR_UKF_main.dir/src/ROAR_UKF.cpp.o -c /home/nvidia/roar_ws/src/JetsonTX2_WS/localization/src/ROAR_UKF.cpp",
+  "file": "/home/nvidia/roar_ws/src/JetsonTX2_WS/localization/src/ROAR_UKF.cpp",
+  "output": "CMakeFiles/ROAR_UKF_main.dir/src/ROAR_UKF.cpp.o"
+},
+{
+  "directory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-10 -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"localization\\\" -I/home/nvidia/roar_ws/src/JetsonTX2_WS/localization/include -I/home/nvidia/roar_ws/devel/.private/roar_msgs/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /usr/include/eigen3 -g -std=c++17 -o CMakeFiles/ROAR_UKF_main.dir/src/Quaternion.cpp.o -c /home/nvidia/roar_ws/src/JetsonTX2_WS/localization/src/Quaternion.cpp",
+  "file": "/home/nvidia/roar_ws/src/JetsonTX2_WS/localization/src/Quaternion.cpp",
+  "output": "CMakeFiles/ROAR_UKF_main.dir/src/Quaternion.cpp.o"
+},
+{
+  "directory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-10 -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"localization\\\" -I/home/nvidia/roar_ws/src/JetsonTX2_WS/localization/include -I/home/nvidia/roar_ws/devel/.private/roar_msgs/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /usr/include/eigen3 -g -std=c++17 -o CMakeFiles/ROAR_UKF.dir/src/ROAR_UKF_main.cpp.o -c /home/nvidia/roar_ws/src/JetsonTX2_WS/localization/src/ROAR_UKF_main.cpp",
+  "file": "/home/nvidia/roar_ws/src/JetsonTX2_WS/localization/src/ROAR_UKF_main.cpp",
+  "output": "CMakeFiles/ROAR_UKF.dir/src/ROAR_UKF_main.cpp.o"
+},
+{
+  "directory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-10 -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"localization\\\" -I/home/nvidia/roar_ws/src/JetsonTX2_WS/localization/include -I/home/nvidia/roar_ws/devel/.private/roar_msgs/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /usr/include/eigen3 -g -std=c++17 -o CMakeFiles/ROAR_UKF.dir/src/ROAR_UKF.cpp.o -c /home/nvidia/roar_ws/src/JetsonTX2_WS/localization/src/ROAR_UKF.cpp",
+  "file": "/home/nvidia/roar_ws/src/JetsonTX2_WS/localization/src/ROAR_UKF.cpp",
+  "output": "CMakeFiles/ROAR_UKF.dir/src/ROAR_UKF.cpp.o"
+},
+{
+  "directory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-10 -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"localization\\\" -I/home/nvidia/roar_ws/src/JetsonTX2_WS/localization/include -I/home/nvidia/roar_ws/devel/.private/roar_msgs/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /usr/include/eigen3 -g -std=c++17 -o CMakeFiles/ROAR_UKF.dir/src/Quaternion.cpp.o -c /home/nvidia/roar_ws/src/JetsonTX2_WS/localization/src/Quaternion.cpp",
+  "file": "/home/nvidia/roar_ws/src/JetsonTX2_WS/localization/src/Quaternion.cpp",
+  "output": "CMakeFiles/ROAR_UKF.dir/src/Quaternion.cpp.o"
+},
+{
+  "directory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/build/gtest/googlemock",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-10 -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgmock_EXPORTS -I/usr/src/googletest/googlemock/include -I/usr/src/googletest/googlemock -I/usr/src/googletest/googletest/include -I/usr/src/googletest/googletest -g -fPIC  -Wall -Wshadow -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++17 -o CMakeFiles/gmock.dir/usr/src/googletest/googletest/src/gtest-all.cc.o -c /usr/src/googletest/googletest/src/gtest-all.cc",
+  "file": "/usr/src/googletest/googletest/src/gtest-all.cc",
+  "output": "gtest/googlemock/CMakeFiles/gmock.dir/usr/src/googletest/googletest/src/gtest-all.cc.o"
+},
+{
+  "directory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/build/gtest/googlemock",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-10 -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgmock_EXPORTS -I/usr/src/googletest/googlemock/include -I/usr/src/googletest/googlemock -I/usr/src/googletest/googletest/include -I/usr/src/googletest/googletest -g -fPIC  -Wall -Wshadow -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++17 -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /usr/src/googletest/googlemock/src/gmock-all.cc",
+  "file": "/usr/src/googletest/googlemock/src/gmock-all.cc",
+  "output": "gtest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o"
+},
+{
+  "directory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/build/gtest/googlemock",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-10 -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgmock_main_EXPORTS -I/usr/src/googletest/googlemock/include -I/usr/src/googletest/googlemock -I/usr/src/googletest/googletest/include -I/usr/src/googletest/googletest -g -fPIC  -Wall -Wshadow -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++17 -o CMakeFiles/gmock_main.dir/usr/src/googletest/googletest/src/gtest-all.cc.o -c /usr/src/googletest/googletest/src/gtest-all.cc",
+  "file": "/usr/src/googletest/googletest/src/gtest-all.cc",
+  "output": "gtest/googlemock/CMakeFiles/gmock_main.dir/usr/src/googletest/googletest/src/gtest-all.cc.o"
+},
+{
+  "directory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/build/gtest/googlemock",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-10 -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgmock_main_EXPORTS -I/usr/src/googletest/googlemock/include -I/usr/src/googletest/googlemock -I/usr/src/googletest/googletest/include -I/usr/src/googletest/googletest -g -fPIC  -Wall -Wshadow -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++17 -o CMakeFiles/gmock_main.dir/src/gmock-all.cc.o -c /usr/src/googletest/googlemock/src/gmock-all.cc",
+  "file": "/usr/src/googletest/googlemock/src/gmock-all.cc",
+  "output": "gtest/googlemock/CMakeFiles/gmock_main.dir/src/gmock-all.cc.o"
+},
+{
+  "directory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/build/gtest/googlemock",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-10 -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgmock_main_EXPORTS -I/usr/src/googletest/googlemock/include -I/usr/src/googletest/googlemock -I/usr/src/googletest/googletest/include -I/usr/src/googletest/googletest -g -fPIC  -Wall -Wshadow -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++17 -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /usr/src/googletest/googlemock/src/gmock_main.cc",
+  "file": "/usr/src/googletest/googlemock/src/gmock_main.cc",
+  "output": "gtest/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o"
+},
+{
+  "directory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/build/gtest/googlemock/gtest",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-10 -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgtest_EXPORTS -I/usr/src/googletest/googletest/include -I/usr/src/googletest/googletest -g -fPIC  -Wall -Wshadow -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++17 -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /usr/src/googletest/googletest/src/gtest-all.cc",
+  "file": "/usr/src/googletest/googletest/src/gtest-all.cc",
+  "output": "gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
+},
+{
+  "directory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/build/gtest/googlemock/gtest",
+  "command": "/usr/bin/aarch64-linux-gnu-g++-10 -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgtest_main_EXPORTS -I/usr/src/googletest/googletest/include -I/usr/src/googletest/googletest -g -fPIC  -Wall -Wshadow -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++17 -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /usr/src/googletest/googletest/src/gtest_main.cc",
+  "file": "/usr/src/googletest/googletest/src/gtest_main.cc",
+  "output": "gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
+}
+]

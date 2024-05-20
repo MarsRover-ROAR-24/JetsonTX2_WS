@@ -8,5 +8,7 @@
         "/home/nvidia/roar24_ws/devel/lib/python3/dist-packages",
         "/home/nvidia/roar_ws/devel/lib/python3/dist-packages",
         "/home/nvidia/ros_catkin_ws/install_isolated/lib/python3/dist-packages"
-    ]
+    ],
+    "cmake.sourceDirectory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/localization",
+    "C_Cpp.errorSquiggles": "Disabled"
 }

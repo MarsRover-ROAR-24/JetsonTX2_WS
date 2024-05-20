@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/nvidia/roar_ws/src/JetsonTX2_WS/build/devel/setup.sh

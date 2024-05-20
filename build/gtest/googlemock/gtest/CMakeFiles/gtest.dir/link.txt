@@ -1,0 +1,1 @@
+/usr/bin/aarch64-linux-gnu-g++-10 -fPIC -g -shared -Wl,-soname,libgtest.so -o ../../lib/libgtest.so "CMakeFiles/gtest.dir/src/gtest-all.cc.o"   -L/home/nvidia/roar_ws/src/JetsonTX2_WS/build/gtest/googlemock/gtest/src  -Wl,-rpath,/home/nvidia/roar_ws/src/JetsonTX2_WS/build/gtest/googlemock/gtest/src -lpthread 

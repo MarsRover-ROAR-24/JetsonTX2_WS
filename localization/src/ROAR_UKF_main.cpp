@@ -3,7 +3,7 @@
 #include <ros/ros.h>
 #include <geometry_msgs/Vector3Stamped.h>
 #include <sensor_msgs/Imu.h>
-#include <std_msgs/Int8MultiArray.h>
+#include <std_msgs/Float64MultiArray.h>
 #include <roar_msgs/encoders_stamped.h>
 
 using namespace std;
@@ -74,6 +74,8 @@ void encoderCallback(const roar_msgs::encoders_stamped::ConstPtr& msg)
 // Callback function for GPS data
 void gpsCallback(const geometry_msgs::Vector3Stamped::ConstPtr& msg)
 {
+    std_msgs::Float64MultiArray state_msg;
+
     if (initial_measurement == true)
     {
         lat0 = msg->vector.x; // Initialize lat0
