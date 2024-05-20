@@ -534,20 +534,6 @@ void UKF::encoder_callback(Eigen::VectorXd w, double dt, double yaw)
     P_post.col(8) = P.col(8);
     P_post.row(7) = P.row(7);
     P_post.row(8) = P.row(8);
-
-    x_prior.tail(2) = x_hat.tail(2);
-    P_prior.col(7) = P.col(7);
-    P_prior.col(8) = P.col(8);
-    P_prior.row(7) = P.row(7);
-    P_prior.row(8) = P.row(8);
-
-
-    // cout << "x_hat: " << endl << x_hat.transpose() << endl;
-    // cout << "x_post: " << x_post.transpose() << endl;
-    // cout << "P_post: " << endl << P_post << endl;
-
-    // cout << "weight mean: " << endl << sigma_points.Wm << endl;
-    // cout << "weight cov: " << endl << sigma_points.Wc << endl;
 }
 void UKF::imu_callback(Eigen::VectorXd z_measurement, double dt)
 {
@@ -646,12 +632,6 @@ void UKF::imu_callback(Eigen::VectorXd z_measurement, double dt)
     z_prior.head(9) = z.head(9);
     S_prior.topLeftCorner(9,9) = S.topLeftCorner(9,9);
 
-    // cout << "weight mean: " << endl << sigma_points.Wm << endl;
-    // cout << "weight cov: " << endl << sigma_points.Wc << endl;
-
-    // cout << "z_prior: " << endl << z_prior.transpose() << endl;
-    // cout << "S: " << endl << S << endl;
-
     	/***
     	Update step of UKF with Quaternion + Angular Velocity model i.e state space is:
         
@@ -684,26 +664,6 @@ void UKF::imu_callback(Eigen::VectorXd z_measurement, double dt)
         x_post(5) = z_measurement(1);
         x_post(6) = z_measurement(2);
 	    P_post.topLeftCorner(7,7) = P.topLeftCorner(7,7);
-        
-        // cout << "T: " << endl << T << endl;
-        // cout << "K: " << endl << K << endl;
-        // cout << "x_hat: " << endl << x_hat.transpose() << endl;
-        // cout << "x_post: " << x_post.transpose() << endl;
-        // cout << "P_post: " << endl << P_post << endl;
-    
-    
-    // float roll = atan2(2*(x_post(0)*x_post(1) + x_post(2)
-    //                         *x_post(3)), 1 - 2*(x_post(1)*x_post(1) 
-    //                             + x_post(2)*x_post(2)))*180/PI;
-	// float pitch = asin(2*(x_post(0)*x_post(2) - x_post(3)*x_post(1)))*180/PI;
-	// float yaw = atan2(2*(x_post(0)*x_post(3) + x_post(1)
-    //                     *x_post(2)), 1 - 2*(x_post(2)*x_post(2)
-    //                         + x_post(3)*x_post(3)))*180/PI;
-
-    // cout << "filter output: " << roll << " " << pitch << " " << yaw << endl;
-    // cout << "x_post: " << x_post.transpose() << endl;
-
-    // cout << "orientation: " << x_post(0) << " " << x_post(1) << " " << x_post(2) << " " << x_post(3) << endl;
 }
 
 void UKF::gps_callback( Eigen::VectorXd z_measurement, double lon0, double lat0, double yaw)
@@ -719,7 +679,7 @@ void UKF::gps_callback( Eigen::VectorXd z_measurement, double lon0, double lat0,
     for (int i = 0; i < sigma_points.num_sigma_points; i++)
     {
         double lat = lat0 + (180 / PI) * (sigmas.col(i)(7) / 6378137);
-        double lon = lon0 + (180 / PI) * (sigmas.col(i)(8) / 6378137) / cos(lat0);
+        double lon = lon0 + (180 / PI) * (sigmas.col(i)(8) / 6378137) / cos(lat0 * PI /180.0);
 
         Z_sigma.col(i) << Z_sigma.col(i)(0), Z_sigma.col(i)(1), Z_sigma.col(i)(2), Z_sigma.col(i)(3), Z_sigma.col(i)(4), Z_sigma.col(i)(5), Z_sigma.col(i)(6),
                         Z_sigma.col(i)(7), Z_sigma.col(i)(8), lat, lon;

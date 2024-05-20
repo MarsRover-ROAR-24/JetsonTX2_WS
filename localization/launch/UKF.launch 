@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+<node pkg="localization" type="OOSM" name="OOSM" output="screen" />
+<node pkg="localization" type="ROAR_main_simulation" name="ukf_localization" output="screen" />
+</launch>
+
+
+
+
+
