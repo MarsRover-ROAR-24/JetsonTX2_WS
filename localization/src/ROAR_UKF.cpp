@@ -666,7 +666,7 @@ void UKF::imu_callback(Eigen::VectorXd z_measurement, double dt)
 	    P_post.topLeftCorner(7,7) = P.topLeftCorner(7,7);
 }
 
-void UKF::gps_callback( Eigen::VectorXd z_measurement, double lon0, double lat0, double yaw)
+void UKF::gps_callback( Eigen::VectorXd z_measurement, double lon0, double lat0)
 {
     /***
     Predict with wheel odometry process model

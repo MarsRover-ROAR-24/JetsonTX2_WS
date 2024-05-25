@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <launch>
 <!-- Launch 2 Arduino boards and set baudrate to 115200-->
     <node
