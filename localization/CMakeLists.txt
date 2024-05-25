@@ -41,16 +41,7 @@ include_directories(
   ${EIGEN3_INCLUDE_DIRS}
 )
 
-add_executable(ROAR_UKF_main src/ROAR_UKF_main.cpp src/ROAR_UKF.cpp src/Quaternion.cpp)
-add_dependencies(ROAR_UKF_main localization_generate_messages_cpp)
-target_link_libraries(ROAR_UKF_main ${catkin_LIBRARIES} Eigen3::Eigen)
-target_include_directories(ROAR_UKF_main PRIVATE include)
-
-add_executable(ROAR_UKF src/ROAR_UKF_main.cpp src/ROAR_UKF.cpp src/Quaternion.cpp)
-target_link_libraries(ROAR_UKF ${catkin_LIBRARIES} Eigen3::Eigen)
-target_include_directories(ROAR_UKF PRIVATE include)
-
-# catkin_install_python(PROGRAMS
-#   src/script.py
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+add_executable(main src/main.cpp src/ROAR_UKF.cpp src/Quaternion.cpp)
+add_dependencies(main localization_generate_messages_cpp)
+target_link_libraries(main ${catkin_LIBRARIES} Eigen3::Eigen)
+target_include_directories(main PRIVATE include)

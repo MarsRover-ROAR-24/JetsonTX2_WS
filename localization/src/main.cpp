@@ -3,8 +3,8 @@
 #include <ros/ros.h>
 #include <geometry_msgs/Vector3Stamped.h>
 #include <sensor_msgs/Imu.h>
-#include <std_msgs/Float64MultiArray.h>
 #include <roar_msgs/encoders_stamped.h>
+#include <std_msgs/Float64MultiArray.h>
 
 using namespace std;
 
@@ -61,7 +61,7 @@ void encoderCallback(const roar_msgs::encoders_stamped::ConstPtr& msg)
     }
 
     // Call UKF encoder callback function
-    ukf.encoder_callback(encoder_measurement, dt, yaw);
+    ukf.encoder_callback(encoder_measurement, dt,yaw);
 
     // Update encoder_prev_time_stamp
     encoder_prev_time_stamp = encoder_current_time_stamp;
@@ -75,25 +75,20 @@ void encoderCallback(const roar_msgs::encoders_stamped::ConstPtr& msg)
 void gpsCallback(const geometry_msgs::Vector3Stamped::ConstPtr& msg)
 {
     std_msgs::Float64MultiArray state_msg;
-    ros::Time gps_current_time_stamp = msg->header.stamp;
 
     if (initial_measurement == true)
     {
         lat0 = msg->vector.x; // Initialize lat0
         lon0 = msg->vector.y; // Initialize lon0
         initial_measurement = false;
-        gps_prev_time_stamp = gps_current_time_stamp;
     }
-    // if (gps_current_time_stamp - gps_prev_time_stamp < 1) return;
 
     // Store GPS measurements
     z_measurement[9] = msg->vector.x;
     z_measurement[10] = msg->vector.y;
 
     // Call UKF GPS callback function
-    ukf.gps_callback(z_measurement, lat0, lon0);
-
-    gps_prev_time_stamp = gps_current_time_stamp;
+    ukf.gps_callback(z_measurement, lon0, lat0);
 
     // Publish state message
     state_msg.data = {ukf.x_post[0], ukf.x_post[1], ukf.x_post[2], ukf.x_post[3], ukf.x_post[4], ukf.x_post[5], ukf.x_post[6], ukf.x_post[7], ukf.x_post[8]};
@@ -127,6 +122,5 @@ int main(int argc, char **argv)
     {
         ros::spinOnce(); // Process callbacks
     }
-
     return 0;
 }

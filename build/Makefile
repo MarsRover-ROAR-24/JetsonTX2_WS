@@ -900,30 +900,17 @@ localization_genpy/fast:
 .PHONY : localization_genpy/fast
 
 #=============================================================================
-# Target rules for targets named ROAR_UKF_main
+# Target rules for targets named main
 
 # Build rule for target.
-ROAR_UKF_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ROAR_UKF_main
-.PHONY : ROAR_UKF_main
+main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
+.PHONY : main
 
 # fast build rule for target.
-ROAR_UKF_main/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF_main.dir/build.make CMakeFiles/ROAR_UKF_main.dir/build
-.PHONY : ROAR_UKF_main/fast
-
-#=============================================================================
-# Target rules for targets named ROAR_UKF
-
-# Build rule for target.
-ROAR_UKF: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ROAR_UKF
-.PHONY : ROAR_UKF
-
-# fast build rule for target.
-ROAR_UKF/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF.dir/build.make CMakeFiles/ROAR_UKF.dir/build
-.PHONY : ROAR_UKF/fast
+main/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
 
 #=============================================================================
 # Target rules for targets named gmock
@@ -982,8 +969,7 @@ src/Quaternion.o: src/Quaternion.cpp.o
 
 # target to build an object file
 src/Quaternion.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF_main.dir/build.make CMakeFiles/ROAR_UKF_main.dir/src/Quaternion.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF.dir/build.make CMakeFiles/ROAR_UKF.dir/src/Quaternion.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Quaternion.cpp.o
 .PHONY : src/Quaternion.cpp.o
 
 src/Quaternion.i: src/Quaternion.cpp.i
@@ -991,8 +977,7 @@ src/Quaternion.i: src/Quaternion.cpp.i
 
 # target to preprocess a source file
 src/Quaternion.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF_main.dir/build.make CMakeFiles/ROAR_UKF_main.dir/src/Quaternion.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF.dir/build.make CMakeFiles/ROAR_UKF.dir/src/Quaternion.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Quaternion.cpp.i
 .PHONY : src/Quaternion.cpp.i
 
 src/Quaternion.s: src/Quaternion.cpp.s
@@ -1000,8 +985,7 @@ src/Quaternion.s: src/Quaternion.cpp.s
 
 # target to generate assembly for a file
 src/Quaternion.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF_main.dir/build.make CMakeFiles/ROAR_UKF_main.dir/src/Quaternion.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF.dir/build.make CMakeFiles/ROAR_UKF.dir/src/Quaternion.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Quaternion.cpp.s
 .PHONY : src/Quaternion.cpp.s
 
 src/ROAR_UKF.o: src/ROAR_UKF.cpp.o
@@ -1009,8 +993,7 @@ src/ROAR_UKF.o: src/ROAR_UKF.cpp.o
 
 # target to build an object file
 src/ROAR_UKF.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF_main.dir/build.make CMakeFiles/ROAR_UKF_main.dir/src/ROAR_UKF.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF.dir/build.make CMakeFiles/ROAR_UKF.dir/src/ROAR_UKF.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/ROAR_UKF.cpp.o
 .PHONY : src/ROAR_UKF.cpp.o
 
 src/ROAR_UKF.i: src/ROAR_UKF.cpp.i
@@ -1018,8 +1001,7 @@ src/ROAR_UKF.i: src/ROAR_UKF.cpp.i
 
 # target to preprocess a source file
 src/ROAR_UKF.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF_main.dir/build.make CMakeFiles/ROAR_UKF_main.dir/src/ROAR_UKF.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF.dir/build.make CMakeFiles/ROAR_UKF.dir/src/ROAR_UKF.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/ROAR_UKF.cpp.i
 .PHONY : src/ROAR_UKF.cpp.i
 
 src/ROAR_UKF.s: src/ROAR_UKF.cpp.s
@@ -1027,36 +1009,32 @@ src/ROAR_UKF.s: src/ROAR_UKF.cpp.s
 
 # target to generate assembly for a file
 src/ROAR_UKF.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF_main.dir/build.make CMakeFiles/ROAR_UKF_main.dir/src/ROAR_UKF.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF.dir/build.make CMakeFiles/ROAR_UKF.dir/src/ROAR_UKF.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/ROAR_UKF.cpp.s
 .PHONY : src/ROAR_UKF.cpp.s
 
-src/ROAR_UKF_main.o: src/ROAR_UKF_main.cpp.o
-.PHONY : src/ROAR_UKF_main.o
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
 
 # target to build an object file
-src/ROAR_UKF_main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF_main.dir/build.make CMakeFiles/ROAR_UKF_main.dir/src/ROAR_UKF_main.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF.dir/build.make CMakeFiles/ROAR_UKF.dir/src/ROAR_UKF_main.cpp.o
-.PHONY : src/ROAR_UKF_main.cpp.o
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-src/ROAR_UKF_main.i: src/ROAR_UKF_main.cpp.i
-.PHONY : src/ROAR_UKF_main.i
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-src/ROAR_UKF_main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF_main.dir/build.make CMakeFiles/ROAR_UKF_main.dir/src/ROAR_UKF_main.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF.dir/build.make CMakeFiles/ROAR_UKF.dir/src/ROAR_UKF_main.cpp.i
-.PHONY : src/ROAR_UKF_main.cpp.i
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-src/ROAR_UKF_main.s: src/ROAR_UKF_main.cpp.s
-.PHONY : src/ROAR_UKF_main.s
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-src/ROAR_UKF_main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF_main.dir/build.make CMakeFiles/ROAR_UKF_main.dir/src/ROAR_UKF_main.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROAR_UKF.dir/build.make CMakeFiles/ROAR_UKF.dir/src/ROAR_UKF_main.cpp.s
-.PHONY : src/ROAR_UKF_main.cpp.s
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -1127,21 +1105,20 @@ help:
 	@echo "... tf2_msgs_generate_messages_lisp"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf2_msgs_generate_messages_py"
-	@echo "... ROAR_UKF"
-	@echo "... ROAR_UKF_main"
 	@echo "... gmock"
 	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... main"
 	@echo "... src/Quaternion.o"
 	@echo "... src/Quaternion.i"
 	@echo "... src/Quaternion.s"
 	@echo "... src/ROAR_UKF.o"
 	@echo "... src/ROAR_UKF.i"
 	@echo "... src/ROAR_UKF.s"
-	@echo "... src/ROAR_UKF_main.o"
-	@echo "... src/ROAR_UKF_main.i"
-	@echo "... src/ROAR_UKF_main.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 
