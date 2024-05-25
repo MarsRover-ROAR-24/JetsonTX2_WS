@@ -1,2 +1,2 @@
 Header header
-float64[6] data
+float64[4] data

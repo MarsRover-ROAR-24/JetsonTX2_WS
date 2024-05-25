@@ -10,5 +10,6 @@
         "/home/nvidia/ros_catkin_ws/install_isolated/lib/python3/dist-packages"
     ],
     "cmake.sourceDirectory": "/home/nvidia/roar_ws/src/JetsonTX2_WS/localization",
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "python.pythonPath": "/usr/bin/python3"
 }
