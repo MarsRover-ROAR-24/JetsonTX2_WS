@@ -10,7 +10,7 @@ using namespace std;
 
 // Define global variables
 Eigen::VectorXd z_measurement(11); // Vector for measurement
-Eigen::VectorXd encoder_measurement(6); // Vector for encoder measurement
+Eigen::VectorXd encoder_measurement(4); // Vector for encoder measurement
 
 // Define constants
 const int n_state_dim = 9;  // State dimension
@@ -56,7 +56,7 @@ void encoderCallback(const roar_msgs::encoders_stamped::ConstPtr& msg)
     dt = (encoder_current_time_stamp - encoder_prev_time_stamp).toSec();
 
     // Store encoder measurements
-    for (int i = 0; i < 6; ++i) {
+    for (int i = 0; i < 4; ++i) {
         encoder_measurement[i] = msg->data[i];
     }
 
