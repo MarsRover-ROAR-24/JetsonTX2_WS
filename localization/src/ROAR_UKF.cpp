@@ -7,11 +7,11 @@ ROVER::ROVER()
     ROVER Default Constructor
     ***/
     // Default Constructor with default parameters
-    Kinematic_model_parameters = Eigen::MatrixXd::Zero(2, 4);
+    Kinematic_model_parameters = Eigen::MatrixXd::Zero(2, 2);
     rover_speeds = Eigen::VectorXd::Zero(2);
     
-    Kinematic_model_parameters << 0.06, 0.06, 0.06, 0.06,
-                                 0.146, -0.146, 0.146, 0.146;
+    Kinematic_model_parameters << 0.06225,  0.06225,
+                                  -0.0001507, 0.0001507
 
 }
 void ROVER::calculate_wheel_change(Eigen::VectorXd w, double dt)

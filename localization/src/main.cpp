@@ -10,7 +10,7 @@ using namespace std;
 
 // Define global variables
 Eigen::VectorXd z_measurement(11); // Vector for measurement
-Eigen::VectorXd encoder_measurement(4); // Vector for encoder measurement
+Eigen::VectorXd encoder_measurement(2); // Vector for encoder measurement
 
 // Define constants
 const int n_state_dim = 9;  // State dimension
@@ -40,7 +40,7 @@ ros::Subscriber gps_sub; // GPS subscriber
 ros::Publisher state_publisher; // State publisher
 
 // Callback function for encoder data
-void encoderCallback(const roar_msgs::encoders_stamped::ConstPtr& msg)
+void encoderCallback(const geometry_msgs::Vector3Stamped::ConstPtr& msg)
 {
     std_msgs::Float64MultiArray state_msg;
 
@@ -54,18 +54,19 @@ void encoderCallback(const roar_msgs::encoders_stamped::ConstPtr& msg)
     // Calculate time difference
     ros::Time encoder_current_time_stamp = msg->header.stamp;
     dt = (encoder_current_time_stamp - encoder_prev_time_stamp).toSec();
-
+    cout << "dt: " << dt << endl;
+    cout << "yaw: " << yaw << endl;
     // Store encoder measurements
-    for (int i = 0; i < 4; ++i) {
-        encoder_measurement[i] = msg->data[i];
-    }
-
+    encoder_measurement[0] = (msg->vector.x)* 0.1047;
+    encoder_measurement[1] = (msg->vector.y)* 0.1047;
+    cout << "right speed: " <<  encoder_measurement[0] << endl;
+    cout << "left speed: " <<  encoder_measurement[1] << endl;
     // Call UKF encoder callback function
     ukf.encoder_callback(encoder_measurement, dt,yaw);
-
+    // cout << "x,y: " <<  ukf.x_post[7], ukf.x_post[8] << endl;
     // Update encoder_prev_time_stamp
     encoder_prev_time_stamp = encoder_current_time_stamp;
-
+    
     // Publish state message
     state_msg.data = {ukf.x_post[0], ukf.x_post[1], ukf.x_post[2], ukf.x_post[3], ukf.x_post[4], ukf.x_post[5], ukf.x_post[6], ukf.x_post[7], ukf.x_post[8]};
     state_publisher.publish(state_msg);

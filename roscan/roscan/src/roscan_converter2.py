@@ -5,6 +5,7 @@ from std_msgs.msg import Int8MultiArray
 from sensor_msgs.msg import Imu
 from can_msgs.msg import Frame
 from roar_msgs.msg import encoders_stamped
+from geometry_msgs.msg import Vector3Stamped
 
 class Handler:
 
@@ -21,7 +22,7 @@ class Handler:
         self.imu_pub = rospy.Publisher(
             "/sensors/imu", Imu, queue_size=10)
         self.encoders_pub = rospy.Publisher(
-            "/sensors/encoders", encoders_stamped, queue_size=10)
+            "/sensors/encoders", Vector3Stamped, queue_size=10)
         self.can_pub = rospy.Publisher(
             "/sent_messages", Frame, queue_size=10)
         # Subscribe to required topics
@@ -56,7 +57,7 @@ class Handler:
                 data_frame: bytes = self.rec_frame.data[:self.rec_frame.dlc]
                 # Encoders message
                 if self.rec_frame.id == 1:
-                    encoders_msg: encoders_stamped = self.get_encoders(
+                    encoders_msg: Vector3Stamped = self.get_encoders(
                         data_frame)
                     self.encoders_pub.publish(encoders_msg)
                 # IMU message
@@ -81,11 +82,14 @@ class Handler:
         self.can_frame.data.append(0)
         self.can_pub.publish(self.can_frame)
 
-    def get_encoders(self, data_frame: bytes) -> encoders_stamped:
-        encoders_msg = encoders_stamped()
+    def get_encoders(self, data_frame: bytes) -> Vector3Stamped:
+        encoders_msg = Vector3Stamped()
         encoders_msg.header.stamp = rospy.Time.now()
-        encoders_msg.data = [rec_reading +
-                        self.encoders_map for rec_reading in data_frame]
+        # Assuming data_frame contains two values for x and y respectively
+        x_reading = data_frame[0] + self.encoders_map
+        y_reading = data_frame[1] + self.encoders_map
+        encoders_msg.vector.x = x_reading
+        encoders_msg.vector.y = y_reading
         return encoders_msg
 
     def get_imu(self, data_frame: bytes) -> Imu:
