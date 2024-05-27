@@ -11,7 +11,7 @@ ROVER::ROVER()
     rover_speeds = Eigen::VectorXd::Zero(2);
     
     Kinematic_model_parameters << 0.06225,  0.06225,
-                                  -0.0001507, 0.0001507
+                                  -0.1507, 0.1507;
 
 }
 void ROVER::calculate_wheel_change(Eigen::VectorXd w, double dt)
