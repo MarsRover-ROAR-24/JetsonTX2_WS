@@ -42,12 +42,6 @@ class Control:
         self.error_values = []
 
         self.waypoints = []
-        self.waypoints_plot = None
-
-        self.waypoints_x = []
-        self.waypoints_y = []
-        self.past_positions_x = []
-        self.past_positions_y = []
 
     def tuple_list_callback(self, msg):
         self.waypoints = [(msg.a[i], msg.b[i]) for i in range(msg.length)]
