@@ -3,7 +3,6 @@
 #include <ros/ros.h>
 #include <geometry_msgs/Vector3Stamped.h>
 #include <sensor_msgs/Imu.h>
-#include <roar_msgs/encoders_stamped.h>
 #include <std_msgs/Float64MultiArray.h>
 
 using namespace std;
@@ -54,16 +53,11 @@ void encoderCallback(const geometry_msgs::Vector3Stamped::ConstPtr& msg)
     // Calculate time difference
     ros::Time encoder_current_time_stamp = msg->header.stamp;
     dt = (encoder_current_time_stamp - encoder_prev_time_stamp).toSec();
-    cout << "dt: " << dt << endl;
-    cout << "yaw: " << yaw << endl;
     // Store encoder measurements
     encoder_measurement[0] = (msg->vector.x)* 0.1047;
     encoder_measurement[1] = (msg->vector.y)* 0.1047;
-    cout << "right speed: " <<  encoder_measurement[0] << endl;
-    cout << "left speed: " <<  encoder_measurement[1] << endl;
     // Call UKF encoder callback function
     ukf.encoder_callback(encoder_measurement, dt,yaw);
-    // cout << "x,y: " <<  ukf.x_post[7], ukf.x_post[8] << endl;
     // Update encoder_prev_time_stamp
     encoder_prev_time_stamp = encoder_current_time_stamp;
     
@@ -103,6 +97,19 @@ void imuCallback(const sensor_msgs::Imu::ConstPtr& msg)
     yaw = yaw * PI / 180.0;
 }
 
+void bnoCallback(const sensor_msgs::Imu::ConstPtr& msg)
+{
+    std_msgs::Float64MultiArray state_msg;
+
+    yaw = msg->orientation.z;
+    yaw = yaw * PI / 180.0;
+    ukf.bno_callback(yaw);
+
+    // Publish state message
+    state_msg.data = {ukf.x_post[0], ukf.x_post[1], ukf.x_post[2], ukf.x_post[3], ukf.x_post[4], ukf.x_post[5], ukf.x_post[6], ukf.x_post[7], ukf.x_post[8]};
+    state_publisher.publish(state_msg);
+}
+
 // Main function
 int main(int argc, char **argv) 
 {
@@ -110,7 +117,7 @@ int main(int argc, char **argv)
     ros::NodeHandle nh; // Create ROS node handle
     
     // Initialize ROS subscribers
-    imu_sub = nh.subscribe("/sensors/imu", 1000, imuCallback);
+    imu_sub = nh.subscribe("/sensors/imu", 1000, bnoCallback);
     encoder_sub = nh.subscribe("/sensors/encoders", 1000, encoderCallback);
     gps_sub = nh.subscribe("/sensors/gps", 1000, gpsCallback);
 

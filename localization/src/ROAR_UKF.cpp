@@ -730,3 +730,12 @@ void UKF::gps_callback( Eigen::VectorXd z_measurement, double lon0, double lat0)
     P_post.row(7) = P.row(7);
     P_post.row(8) = P.row(8);
 }
+
+void UKF::bno_callback(double yaw)
+{
+    Quaternion q(0,0,yaw);
+    x_post(0) = q.s;
+    x_post(1) = q.v_1;
+    x_post(2) = q.v_2;
+    x_post(3) = q.v_3;
+}
