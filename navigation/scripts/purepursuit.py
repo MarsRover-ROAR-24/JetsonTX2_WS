@@ -20,8 +20,9 @@ class Control:
         self.pose_subscriber = rospy.Subscriber('/filtered_state', Float64MultiArray, self.update_pose)
         self.path_subscriber = rospy.Subscriber('tuple_list_topic', wp_list, self.tuple_list_callback)  #===>
 
-        self.pose = ModelStates()
+        self.pose = Float64MultiArray()
         self.throttle_output=Float64()
+        self.published_velocity = Int8MultiArray()
 
         self.rate = rospy.Rate(10)
         self.kp = 0.5
@@ -171,9 +172,8 @@ class Control:
             Vl_mapped = int(((Vl + 1.57) / (1.57 * 2)) * 127 + 0.5)
             print('Right: ', Vr, ' Mapped Right:', Vr_mapped, ' Left: ', Vl, ' Mapped Left:', Vl_mapped)
 
-            published_velocity = Int8MultiArray()
-            published_velocity.data = [Vl_mapped, Vr_mapped, Vl_mapped, Vr_mapped, Vl_mapped, Vr_mapped]
-            self.velocity_publisher.publish(published_velocity)
+            self.published_velocity.data = [Vl_mapped, Vr_mapped, Vl_mapped, Vr_mapped, Vl_mapped, Vr_mapped]
+            self.velocity_publisher.publish(self.published_velocity)
             
             # Plot rover position
             self.plot_rover_position()
