@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 import rospy
 import subprocess
-import numpy as np
-from std_msgs.msg import Int8MultiArray
-from sensor_msgs.msg import JointState, Imu
+from std_msgs.msg import Int64MultiArray
+from sensor_msgs.msg import Imu
 from can_msgs.msg import Frame
+from roar_msgs.msg import encoders_stamped
+from geometry_msgs.msg import Vector3Stamped
 
 class Handler:
 
@@ -12,7 +13,6 @@ class Handler:
         self.init_node()
         self.init_can()
         self.loop()
-
 
     def init_node(self) -> None:
         # Initialize ROS node
@@ -22,50 +22,33 @@ class Handler:
         self.imu_pub = rospy.Publisher(
             "/sensors/imu", Imu, queue_size=10)
         self.encoders_pub = rospy.Publisher(
-            "/sensors/encoders", Int8MultiArray, queue_size=10)
+            "/sensors/encoders", Vector3Stamped, queue_size=10)
         self.can_pub = rospy.Publisher(
             "/sent_messages", Frame, queue_size=10)
         # Subscribe to required topics
-        rospy.Subscriber("/nav_action/supervised",
-                         Int8MultiArray,
-                         self.nav_action_callback)
+        rospy.Subscriber("/processed_joint_angles",
+                         Int64MultiArray,
+                         self.joint_angels_callback)
         rospy.Subscriber("/received_messages",
                          Frame,
                          self.can_callback)
-        rospy.Subscriber("/joint_states",
-                         JointState, 
-                         self.joint_angels_callback)
 
     def init_can(self) -> None:
         self.launch_shell_script()
         self.rec_frame: Frame = None
         self.can_frame = Frame()
-        self.can_frame.header.frame_id = "setpoint_angels"
+        self.can_frame.header.frame_id = "setpoint_speeds"
         self.can_frame.id: int = 0
         self.can_frame.dlc: int = 6
         self.can_frame.is_rtr: bool = False
         self.can_frame.is_extended: bool = False
         self.can_frame.is_error: bool = False
+        self.encoders_map: int = -16
 
     def launch_shell_script(self) -> None:
         shellscript = subprocess.Popen(
-            ["/home/nvidia/roar_ws/src/roscan/roscan/config/can0.sh"])
+            ["/home/nvidia/roar_ws/src/JetsonTX2_WS/roscan/roscan/config/can0.sh"])
         shellscript.wait()
-
-    # Called every time a CAN message is received on /received_messages
-    def can_callback(self, rec_message: Frame) -> None:
-        if rec_message.is_error == True:
-            rospy.logerr("Received the following CAN message with error:\n{}"
-                         .format(rec_message))
-        else:
-            self.rec_frame = rec_message
-
-    def joint_angels_callback(self, rec_setpoints: JointState) -> None: 
-        self.can_frame.header.stamp = rospy.Time.now()
-        self.can_frame.data = [setpoint for setpoint in np.degrees(rec_setpoints.position).astype(np.uint16)]
-        self.can_frame.data.append(0)
-        self.can_frame.data.append(0)
-        self.can_pub.publish(self.can_frame)
 
     # This will be called periodically to check for received CAN frames
     def loop(self) -> None:
@@ -74,7 +57,7 @@ class Handler:
                 data_frame: bytes = self.rec_frame.data[:self.rec_frame.dlc]
                 # Encoders message
                 if self.rec_frame.id == 1:
-                    encoders_msg: Int8MultiArray = self.get_encoders(
+                    encoders_msg: Vector3Stamped = self.get_encoders(
                         data_frame)
                     self.encoders_pub.publish(encoders_msg)
                 # IMU message
@@ -92,17 +75,21 @@ class Handler:
         else:
             self.rec_frame = rec_message
 
-    def nav_action_callback(self, rec_setpoints: Int8MultiArray) -> None:
+    def joint_angels_callback(self, rec_setpoints: Int64MultiArray) -> None:
         self.can_frame.header.stamp = rospy.Time.now()
-        self.can_frame.daxta = [setpoint for setpoint in rec_setpoints.data]
+        self.can_frame.data = [setpoint for setpoint in rec_setpoints.data]
         self.can_frame.data.append(0)
         self.can_frame.data.append(0)
         self.can_pub.publish(self.can_frame)
 
-    def get_encoders(self, data_frame: bytes) -> Int8MultiArray:
-        encoders_msg = Int8MultiArray()
-        encoders_msg.data = [rec_reading +
-                        self.encoders_map for rec_reading in data_frame]
+    def get_encoders(self, data_frame: bytes) -> Vector3Stamped:
+        encoders_msg = Vector3Stamped()
+        encoders_msg.header.stamp = rospy.Time.now()
+        # Assuming data_frame contains two values for x and y respectively
+        x_reading = data_frame[0] + self.encoders_map
+        y_reading = data_frame[1] + self.encoders_map
+        encoders_msg.vector.x = x_reading
+        encoders_msg.vector.y = y_reading
         return encoders_msg
 
     def get_imu(self, data_frame: bytes) -> Imu:
@@ -118,6 +105,7 @@ class Handler:
         imu_msg.orientation.z = yaw_angle
         imu_msg.angular_velocity.z = yaw_rate
         return imu_msg
+
 
 if __name__ == '__main__':
     try:
