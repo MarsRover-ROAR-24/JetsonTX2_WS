@@ -23,7 +23,7 @@ class Control:
         self.kp = 0.5
         self.ki = 0.5
         self.kd = 0.0
-        self.dist_ld = 3
+        self.dist_ld = 1.5
 
         self.dt = 0.1
         self.currentx = 0.0
@@ -55,11 +55,11 @@ class Control:
         velocity = min(max(velocity, -1.57), 1.57)
         
         if velocity < 0:
-            # Mapping negative values from -1.57 to 0 to the range 0 to 55
-            return int(((velocity + 1.57) / 1.57) * 55)
+            # Mapping negative values from -1.57 to 0 to the range 0 to 61
+            return int(((velocity + 1.57) / 1.57) * 61)
         else:
-            # Mapping positive values from 0 to 1.57 to the range 75 to 127
-            return int((velocity / 1.57) * 52 + 75)
+            # Mapping positive values from 0 to 1.57 to the range 67 to 127
+            return int((velocity / 1.57) * 60 + 67)
 
     def pidController(self):
         e= 0.0
