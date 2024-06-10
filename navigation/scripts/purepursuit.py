@@ -33,8 +33,6 @@ class Control:
 
         self.robot_theta = 0.0
         self.width = 0.8
-        self.time_values = []
-        self.error_values = []
 
         self.waypoints = [(1,0)]
 
@@ -51,6 +49,17 @@ class Control:
         orientation_list = [self.pose.data[1], self.pose.data[2], self.pose.data[3], self.pose.data[0]]
         _, _, yaw = euler_from_quaternion(orientation_list)
         self.robot_theta = yaw
+
+    def map_velocity(self,velocity):
+        # Clamping the value to be within the range -1.57 to 1.57
+        velocity = min(max(velocity, -1.57), 1.57)
+        
+        if velocity < 0:
+            # Mapping negative values from -1.57 to 0 to the range 0 to 55
+            return int(((velocity + 1.57) / 1.57) * 55)
+        else:
+            # Mapping positive values from 0 to 1.57 to the range 75 to 127
+            return int((velocity / 1.57) * 52 + 75)
 
     def pidController(self):
         e= 0.0
@@ -109,9 +118,9 @@ class Control:
             Vr = min(max(Vr, -1.57), 1.57)
             Vl = min(max(Vl, -1.57), 1.57)
 
-            Vr_mapped = int(((Vr + 1.57) / (1.57 * 2)) * 127 + 0.5) 
-            Vl_mapped = int(((Vl + 1.57) / (1.57 * 2)) * 127 + 0.5)
-
+            Vr_mapped = self.map_velocity(Vr)
+            Vl_mapped = self.map_velocity(Vl)
+            
             self.published_velocity.data = [Vl_mapped, Vr_mapped, Vl_mapped, Vr_mapped, Vl_mapped, Vr_mapped]
             self.velocity_publisher.publish(self.published_velocity)
 
