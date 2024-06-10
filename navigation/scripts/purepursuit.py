@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
 import math
 import rospy
-from std_msgs.msg import String, Float64, Float64MultiArray, Int8MultiArray
-from geometry_msgs.msg import Twist, Pose
-from nav_msgs.msg import Odometry
-from gazebo_msgs.msg import ModelStates, LinkStates
+from std_msgs.msg import Float64, Float64MultiArray, Int8MultiArray
 from tf.transformations import euler_from_quaternion
-import time
 import numpy as np
-import matplotlib.pyplot as plt
-from turtlebot3_msgs.msg import wp_list
+# from turtlebot3_msgs.msg import wp_list
 
 class Control:
 
@@ -18,7 +13,7 @@ class Control:
         rospy.init_node('controller', anonymous=True)
         self.velocity_publisher = rospy.Publisher('/nav_action/supervised', Int8MultiArray, queue_size=10)
         self.pose_subscriber = rospy.Subscriber('/filtered_state', Float64MultiArray, self.update_pose)
-        self.path_subscriber = rospy.Subscriber('tuple_list_topic', wp_list, self.tuple_list_callback) 
+        # self.path_subscriber = rospy.Subscriber('tuple_list_topic', wp_list, self.tuple_list_callback) 
 
         self.pose = Float64MultiArray()
         self.throttle_output=Float64()
@@ -28,7 +23,7 @@ class Control:
         self.kp = 0.5
         self.ki = 0.5
         self.kd = 0.0
-        self.dist_ld = 0.3
+        self.dist_ld = 1
 
         self.dt = 0.1
         self.currentx = 0.0
@@ -41,13 +36,13 @@ class Control:
         self.time_values = []
         self.error_values = []
 
-        self.waypoints = []
+        self.waypoints = [(1,0)]
 
-    def tuple_list_callback(self, msg):
-        self.waypoints = [(msg.a[i], msg.b[i]) for i in range(msg.length)]
-        self.x_goal_point = msg.a[0]
-        self.y_goal_point = msg.b[0]
-        self.waypoints.reverse()
+    # def tuple_list_callback(self, msg):
+    #     self.waypoints = [(msg.a[i], msg.b[i]) for i in range(msg.length)]
+    #     self.x_goal_point = msg.a[0]
+    #     self.y_goal_point = msg.b[0]
+    #     self.waypoints.reverse()
 
     def update_pose(self, data:Float64MultiArray):
         self.pose = data
