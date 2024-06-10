@@ -23,7 +23,7 @@ class Control:
         self.kp = 0.5
         self.ki = 0.5
         self.kd = 0.0
-        self.dist_ld = 1
+        self.dist_ld = 3
 
         self.dt = 0.1
         self.currentx = 0.0
